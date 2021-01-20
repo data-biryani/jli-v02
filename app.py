@@ -9,19 +9,19 @@ st.sidebar.markdown("## Upload judge data")
 uploaded_csv_judge = st.sidebar.file_uploader("Upload CSV", type="csv", key="judge")
 if uploaded_csv_judge:
     df_judge = pd.read_csv(uploaded_csv_judge)
-    st.write(f"{df_judge.shape[0]} rows and {df_judge.shape[0]} columns")
+    st.sidebar.write(f"{df_judge.shape[0]} rows and {df_judge.shape[0]} columns")
     
 st.sidebar.markdown("## Upload judgment data")
 uploaded_csv_judgment = st.sidebar.file_uploader("Upload CSV", type="csv", key="judgment")
 if uploaded_csv_judgment:
     df_judgment = pd.read_csv(uploaded_csv_judgment)
-    st.write(f"{df_judgment.shape[0]} rows and {df_judgment.shape[0]} columns")
+    st.sidebar.write(f"{df_judgment.shape[0]} rows and {df_judgment.shape[0]} columns")
     
 st.sidebar.markdown("## Upload judgment text data")
 uploaded_csv_text = st.sidebar.file_uploader("Upload CSV", type="csv", key="text")
 if uploaded_csv_text:
     df_text = pd.read_csv(uploaded_csv_text)
-    st.write(f"{df_text.shape[0]} rows and {df_text.shape[0]} columns")
+    st.sidebar.write(f"{df_text.shape[0]} rows and {df_text.shape[0]} columns")
 
 
 mode = st.sidebar.radio(label="", options=["Judges", "Judgments", "Judgment text"], index=0,)
