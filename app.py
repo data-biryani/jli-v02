@@ -1,7 +1,6 @@
 import streamlit as st
 import pandas as pd
 from judge import Judge
-from flags import Flags
 
 st.sidebar.markdown("# JLI v2")
 
@@ -24,8 +23,7 @@ if uploaded_csv_text:
     st.sidebar.write(f"{df_text.shape[0]} rows and {df_text.shape[0]} columns")
 
 
-mode = st.sidebar.radio(label="", options=["Judges", "Judgments", "Judgment text"], index=0,)
-csv_status = Flags()
+mode = st.radio(label="", options=["Judges", "Judgments", "Judgment text"], index=0,)
 
 if mode == "Judges":
     if uploaded_csv_judge:
