@@ -51,9 +51,18 @@ def process_judgments(path: str) -> pd.DataFrame:
         "Bench12",
         "Bench13",
     ]
-    df["concurrence"] = df[concurrence_collist].apply(lambda x: list(x.values), axis=1)
-    df["dissent"] = df[dissent_collist].apply(lambda x: list(x.values), axis=1)
-    df["bench"] = df[bench_collist].apply(lambda x: list(x.values), axis=1)
+    df["concurrence"] = df[concurrence_collist].apply(
+        lambda x: list([j.strip() for j in list(x.values) if j not in ["", " ", "  ", np.NaN]]),
+        axis=1,
+    )
+    df["dissent"] = df[dissent_collist].apply(
+        lambda x: list([j.strip() for j in list(x.values) if j not in ["", " ", "  ", np.NaN]]),
+        axis=1,
+    )
+    df["bench"] = df[bench_collist].apply(
+        lambda x: list([j.strip() for j in list(x.values) if j not in ["", " ", "  ", np.NaN]]),
+        axis=1,
+    )
 
     df = df.loc[
         :,
@@ -111,7 +120,8 @@ if mode == "Judgments":
         st.write(all_judges)
         # 2. Count no of judgements by judge
         st.write("## Number of judgments by judge")
-        for index, row in df.iterrows():
+        df = pd.DataFrame()
+        for index, row in df_judgment.iterrows():
             pass
 
         # 3. Count no of Concurrence, Dissent by judge
