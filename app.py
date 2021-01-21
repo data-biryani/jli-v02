@@ -177,8 +177,6 @@ if mode == "Judgments":
                 "judiciary_background",
             ]
             judge_profile_cols = list(df_judge_profile.columns)
-            st.write(df)
-            st.write(df_judge_profile)
             df = df.merge(df_judge_profile, how="left", on="judge")
 
         grouping_vars = st.multiselect(
