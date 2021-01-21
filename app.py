@@ -123,7 +123,7 @@ if mode == "Judgments":
         df = pd.DataFrame()
         for index, row in df_judgment.iterrows():
             # row.bench, row.concurrence, row.dissent
-            judges = list([j.strip() for j in list(row.bench.values) if j not in ["", " ", "  ", np.NaN]])
+            judges = list([j.strip() for j in list(row.bench) if j not in ["", " ", "  ", np.NaN]])
             for judge in judges:
                 new_df = pd.DataFrame(
                     {
