@@ -1,5 +1,6 @@
 import streamlit as st
 import pandas as pd
+import numpy as np
 from judge import Judge
 
 st.sidebar.markdown("# JLI v2")
@@ -106,6 +107,7 @@ if mode == "Judgments":
         # 1. Get a list of all judges
         st.markdown("## List of judges")
         all_judges = [item for sublist in list(df_judgment.bench.values) for item in sublist]
+        all_judges = list(set([j for j in all_judges if j not in ["", " ", np.NaN]]))
         st.write(f"Total no of judges found (in benches): {len(all_judges)}")
         st.write(all_judges)
         # 2. Count no of judgements by judge
