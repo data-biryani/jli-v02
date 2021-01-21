@@ -101,16 +101,19 @@ if mode == "Judges":
 if mode == "Judgments":
     if uploaded_csv_judgment:
         st.markdown("## Appellant types and count")
-        df_judgment["Type Appellant"].value_counts()
+        st.write(df_judgment["Type Appellant"].value_counts())
         st.markdown("## Respondent types and count")
-        df_judgment["Type Respondent"].value_counts()
-        # 1. Get a list of all judges
+        st.write(df_judgment["Type Respondent"].value_counts())
         st.markdown("## List of judges")
         all_judges = [item for sublist in list(df_judgment.bench.values) for item in sublist]
         all_judges = list(set([j.strip() for j in all_judges if j not in ["", " ", "  ", np.NaN]]))
         st.write(f"Total no of judges found (in benches): {len(all_judges)}")
         st.write(all_judges)
         # 2. Count no of judgements by judge
+        st.write("## Number of judgments by judge")
+        for index, row in df.iterrows():
+            pass
+
         # 3. Count no of Concurrence, Dissent by judge
 
 if mode == "Judgment text":
