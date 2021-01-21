@@ -52,15 +52,15 @@ def process_judgments(path: str) -> pd.DataFrame:
         "Bench13",
     ]
     df["concurrence"] = df[concurrence_collist].apply(
-        lambda x: list([j.strip() for j in list(x.values) if j not in ["", " ", "  ", np.NaN]]),
+        lambda x: list(x.values),
         axis=1,
     )
     df["dissent"] = df[dissent_collist].apply(
-        lambda x: list([j.strip() for j in list(x.values) if j not in ["", " ", "  ", np.NaN]]),
+        lambda x: list(x.values),
         axis=1,
     )
     df["bench"] = df[bench_collist].apply(
-        lambda x: list([j.strip() for j in list(x.values) if j not in ["", " ", "  ", np.NaN]]),
+        lambda x: list(x.values),
         axis=1,
     )
 
@@ -122,7 +122,22 @@ if mode == "Judgments":
         st.write("## Number of judgments by judge")
         df = pd.DataFrame()
         for index, row in df_judgment.iterrows():
-            pass
+            # row.bench, row.concurrence, row.dissent
+            judges = list([j.strip() for j in list(row.bench.values) if j not in ["", " ", "  ", np.NaN]])
+            for judge in judges:
+                new_df = pd.DataFrame(
+                    {
+                        "case_name": row["Name of Case"],
+                        "Date of Decision": row["Date of Decision"],
+                        "Split": row["Split"],
+                        "Type Appellant": row["Type Appellant"],
+                        "Type Respondent": row["Type Respondent"],
+                        "Jurisdiction": row["Jurisdiction"],
+                        "Who Won": row["Who Won"],
+                    }
+                )
+                df = df.append(new_df)
+        st.write(df)
 
         # 3. Count no of Concurrence, Dissent by judge
 
